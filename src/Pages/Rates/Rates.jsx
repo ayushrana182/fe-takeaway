@@ -32,7 +32,7 @@ const Rates = () => {
     const fetchData = async () => {
         if (!loading) {
             setLoading(true);
-            setError('');
+            // setError('');
             const sellCurrency = countryToCurrency[fromCurrency];
             const buyCurrency = countryToCurrency[toCurrency];
             // console.log('Fetching rate', sellCurrency, buyCurrency);
@@ -45,10 +45,12 @@ const Rates = () => {
             
             if (!res.ok) {
                 setError(data?.detail || 'Failed to fetch rate');
+                setExchangeRate(0);
                 return;
             }
 
             if (data?.retailRate) {
+                setError('');
                 setExchangeRate(parseFloat(data.retailRate));
             }
         } catch (err) {
