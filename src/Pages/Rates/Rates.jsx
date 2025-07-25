@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DropDown from '../../Components/DropDown';
 import ProgressBar from '../../Components/ProgressBar';
 import Loader from '../../Components/Loader';
@@ -72,6 +72,9 @@ const Rates = () => {
         });
     });
 
+    useEffect(() => {
+    setProgression((prev) => Math.max(prev, 0.999));
+    }, [fromCurrency, toCurrency]);
 
     const parsedAmount = parseFloat(amount);
     const isValidAmount = !isNaN(parsedAmount);
